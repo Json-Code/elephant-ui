@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import Button, { ButtonType, ButtonSize } from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
+import Icon from './components/Icon/icon'
+import Transition from './components/Transition/transition'
+library.add(fas)
 
 function App() {
+  let [show, setShow] = useState(false)
   return (
     <div className="App">
       <div>
@@ -79,7 +85,28 @@ function App() {
               cool link 3
             </MenuItem>
           </SubMenu>                  
-        </Menu>        
+        </Menu>
+      </div>
+      <div>
+        <hr/>
+        icon
+        <Icon icon="coffee" theme="danger" size="10x"></Icon>
+      </div>
+      <div>
+        <hr/>
+        过渡组件
+        <Button size={ButtonSize.Large} onClick={() => { setShow(!show) }}>toggle</Button>
+        <Transition
+          in={show}
+          timeout={300}
+          animation="zoom-in-left"
+        >
+          <div>
+            <div>111</div>
+            <div>222</div>
+            <div>333</div>
+          </div>
+        </Transition>
       </div>
     </div>
   );
